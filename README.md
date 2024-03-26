@@ -37,10 +37,19 @@ Dataset ini terbatas pada lagu-lagu berbahasa Inggris, sehingga cocok untuk digu
 [Dataset Lagu](https://github.com/GrayRobert/big-data-project/blob/master/src/main/resources/temp/data/songdata.csv)
 
 ### Exploratory Data Analysis
-1. Info Data dan Cek Missing Value
-2. Berapa banyak artist yang ada dalam dataset?
-3. Visualisasi artis dengan lagu terbanyak (top 10) di dataset ini
-4. Rata-rata jumlah kata dalam lirik
+1. Info Data dan Cek Missing Value <br>
+![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/fb76a022-38ff-4551-883c-5800babbc741) <br>
+    - Semua kolom bertipe object dan tidak missing value dalam dataset ini
+2. Berapa banyak artist yang ada dalam dataset? <br>
+![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/be2210e6-55da-4118-837a-762b78b591b3) <br>
+    - Terdapat 17566 artist yang terdapat dalam dataset ini
+3. Visualisasi artis dengan lagu terbanyak (top 10) di dataset ini <br>
+![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/8fc0943f-e366-4bfc-a907-d82d2c531279) <br>
+![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/701e456e-0ccf-484a-802a-6d47035a8a6c) <br>
+
+4. Rata-rata jumlah kata dalam lirik <br>
+![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/4f98ba36-0b2e-4f92-99ac-f4e95032323b)<br>
+    - Diketahui, Rata-rata dalam 1 lagu terdapat 219 kata
 
 ## 4. Data Preparation
 ### Teknik yang Dilakukan
@@ -60,7 +69,8 @@ Dataset ini terbatas pada lagu-lagu berbahasa Inggris, sehingga cocok untuk digu
 
 ## 5. Modeling and Result
 ### Content-Based Filtering
-![image](https://www.google.com/url?sa=i&url=https%3A%2F%2Ftowardsdatascience.com%2Fthe-abc-of-building-a-music-recommender-system-part-i-230e99da9cad&psig=AOvVaw1djpv-LgY5L3rWAu40bivf&ust=1711565554685000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCODms9nMkoUDFQAAAAAdAAAAABAE)
+![1_MnedC576EFf7dfeKmPBkiQ](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/1e6c0867-8123-4a00-a727-25f9830362ab)
+
 Content-based filtering adalah salah satu teknik dalam sistem rekomendasi yang menggunakan informasi tentang item (konten) yang disukai oleh pengguna untuk melakukan rekomendasi item serupa.
 
 Dalam konteks rekomendasi musik berdasarkan lirik lagu, content-based filtering akan menganalisis lirik lagu yang disukai oleh pengguna untuk mencari lagu-lagu lain yang memiliki kesamaan dalam konten (lirik) dengan lagu-lagu tersebut. Misalnya, jika pengguna menyukai lagu dengan lirik yang mengandung kata-kata seperti "love", "heartbreak", dan "romance", maka content-based filtering akan merekomendasikan lagu-lagu dengan lirik yang mirip.
@@ -86,12 +96,17 @@ Dalam konteks rekomendasi musik berdasarkan lirik lagu, content-based filtering 
 - Cosine similarity adalah metode untuk mengukur kesamaan antara dua vektor berdasarkan sudut kosinus antara vektor-vektor tersebut.
 - Pada tahap ini, kita menggunakan cosine_similarity dari scikit-learn untuk menghitung similarity score antara setiap pasangan lagu berdasarkan bobot TF-IDF dari kata-kata dalam lirik lagu.
 - Setiap elemen dalam matriks cosine similarity akan menunjukkan seberapa mirip dua lagu berdasarkan liriknya.
+### Hasil setelah TF-IDF dan hitung Cosine Similarity
+![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/a366759d-a00d-4b38-a4ce-9a476b3035f5)
 
 ### Result
+Sebagai contoh, di sini saya input lagu dari Justin Bieber dengan judul "Christmas Is Dead" dan keluar 5 rekomendasi teratas berdasarkan similarity score paling tinggi <br>
+![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/08d9b73f-2ef2-48ed-a8b3-830a75407deb)<br>
+Jika kita lihat, model berhasil menghasilkan rekomendasi yang sesuai, yakni yang berkaitan dengan christmas
 
 ## 6. Evaluation
-Untuk evaluasi, menggunakan metrik precision yang dirumuskan sebagai berikut:
-<b> Precision = (Jumlah Rekomendasi Relevan) / (Jumlah Item yang Direkomendasikan)
+Untuk evaluasi, menggunakan metrik precision yang dirumuskan sebagai berikut: <br>
+<b> Precision = (Jumlah Rekomendasi Relevan) / (Jumlah Item yang Direkomendasikan) </b>
 
 Keterangan:
 - Jumlah rekomendasi yang relevan: Jumlah item yang direkomendasikan oleh sistem yang benar-benar disukai atau dibutuhkan oleh pengguna.
