@@ -58,7 +58,7 @@ Tabel 1. Info Data
 
 </div>
 
-    - Semua kolom bertipe object dan tidak missing value dalam dataset ini
+- Semua kolom bertipe object dan tidak missing value dalam dataset ini
     
 2. Berapa banyak artist yang ada dalam dataset? <br>
 <div align="center">
@@ -66,6 +66,7 @@ Tabel 1. Info Data
 ![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/293f0118-2d71-44d8-a93d-8661354296e6) <br>
 
 </div>
+
 3. Visualisasi artis dengan lagu terbanyak (top 10) di dataset ini <br>
 
 <div align="center">
@@ -109,7 +110,7 @@ Tabel 3. Describe Data
 
 </div>
 
-    - Diketahui, Rata-rata dalam 1 lagu terdapat 219 kata
+- Diketahui, Rata-rata dalam 1 lagu terdapat 219 kata
 
 ## 4. Data Preparation
 ### Teknik yang Dilakukan
