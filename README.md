@@ -9,17 +9,17 @@ Proyek ini penting karena dapat membantu pengguna menemukan lagu-lagu baru yang 
 
 ## 2. Business Understanding
 ### Problem Statement
-    1. Bagaimana mengembangkan sistem rekomendasi musik yang dapat memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna?
-    2. Bagaimana tingkat akurasi dan relevansi rekomendasi lagu yang diberikan kepada pengguna?
-    3. Bagaimana tahapan dalam membuat rekomendasi musik berdasarkan lirik lagu?
+1. Bagaimana mengembangkan sistem rekomendasi musik yang dapat memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna?
+2. Bagaimana tingkat akurasi dan relevansi rekomendasi lagu yang diberikan kepada pengguna?
+3. Bagaimana tahapan dalam membuat rekomendasi musik berdasarkan lirik lagu?
 ### Goals
-    1. Mengembangkan sistem rekomendasi musik yang dapat memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna
-    2. Mengetahui tingkat akurasi dan relevansi rekomendasi lagu yang diberikan kepada pengguna
-    3. Mengethaui tahapan dalam membuat rekomendasi musik berdasarkan lirik lagu
+1. Mengembangkan sistem rekomendasi musik yang dapat memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna
+2. Mengetahui tingkat akurasi dan relevansi rekomendasi lagu yang diberikan kepada pengguna
+3. Mengethaui tahapan dalam membuat rekomendasi musik berdasarkan lirik lagu
 ### Manfaat/Impact
-    1. Meningkatkan Penjualan atau Stream Musik: Dengan memperkenalkan lagu-lagu baru/lain kepada pengguna berdasarkan lirik, sistem ini dapat membantu meningkatkan penjualan atau stream musik bagi para artis atau label musik.
-    2. Meningkatkan Retensi Pengguna: Dengan memberikan pengalaman yang memuaskan dalam menemukan lagu-lagu yang disukai, sistem ini dapat membantu meningkatkan retensi pengguna terhadap platform musik tersebut.
-    3. Meningkatkan Pengalaman Pengguna: Dengan memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna, sistem ini dapat meningkatkan pengalaman mendengarkan musik pengguna.
+1. Meningkatkan Penjualan atau Stream Musik: Dengan memperkenalkan lagu-lagu baru/lain kepada pengguna berdasarkan lirik, sistem ini dapat membantu meningkatkan penjualan atau stream musik bagi para artis atau label musik.
+2. Meningkatkan Retensi Pengguna: Dengan memberikan pengalaman yang memuaskan dalam menemukan lagu-lagu yang disukai, sistem ini dapat membantu meningkatkan retensi pengguna terhadap platform musik tersebut.
+3. Meningkatkan Pengalaman Pengguna: Dengan memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna, sistem ini dapat meningkatkan pengalaman mendengarkan musik pengguna.
 ### Solutions Approach
 1. Preprocessing
     - Case Folding: Merubah semua teks lirik lagu menjadi huruf kecil untuk menghindari perbedaan yang tidak diperlukan karena perbedaan besar-kecil huruf.
@@ -39,7 +39,7 @@ Dataset ini merupakan kumpulan data berisi informasi tentang lagu-lagu berbahasa
 - Link: Link atau URL yang mengarahkan ke informasi lebih lanjut tentang lagu.
 - Text: Teks lirik dari lagu tersebut.
 
-Dataset ini terbatas pada lagu-lagu berbahasa Inggris, sehingga cocok untuk digunakan dalam pembuatan sistem rekomendasi musik berdasarkan lirik menggunakan metode seperti TF-IDF dan cosine similarity. Dengan memanfaatkan dataset ini, kita dapat melakukan analisis teks pada lirik lagu untuk menghasilkan rekomendasi lagu yang lebih baik sesuai dengan preferensi pengguna.
+Dataset ini terbatas pada lagu-lagu berbahasa Inggris, sehingga cocok untuk digunakan dalam pembuatan sistem rekomendasi musik berdasarkan lirik menggunakan metode seperti TF-IDF dan cosine similarity. Dengan memanfaatkan dataset ini, dapat dilakukan analisis teks pada lirik lagu untuk menghasilkan rekomendasi lagu yang lebih baik sesuai dengan preferensi pengguna.
 ### Sumber Data
 [Dataset Lagu](https://github.com/GrayRobert/big-data-project/blob/master/src/main/resources/temp/data/songdata.csv)
 
@@ -150,20 +150,32 @@ Dalam konteks rekomendasi musik berdasarkan lirik lagu, content-based filtering 
 
 ### TF-IDF (Term Frequency-Inverse Document Frequency)
 - TF-IDF adalah metode yang digunakan untuk mengukur pentingnya kata dalam sebuah dokumen relatif terhadap koleksi dokumen.
-- Pada tahap ini, kita menggunakan TfidfVectorizer dari scikit-learn untuk menghitung bobot TF-IDF dari setiap kata dalam lirik lagu.
+- Pada tahap ini, menggunakan TfidfVectorizer dari scikit-learn untuk menghitung bobot TF-IDF dari setiap kata dalam lirik lagu.
 - TfidfVectorizer akan mengubah teks (lirik lagu) menjadi matriks di mana setiap baris mewakili sebuah lagu dan setiap kolom mewakili kata dalam lirik lagu.
 ### Cosine Similarity
 - Cosine similarity adalah metode untuk mengukur kesamaan antara dua vektor berdasarkan sudut kosinus antara vektor-vektor tersebut.
-- Pada tahap ini, kita menggunakan cosine_similarity dari scikit-learn untuk menghitung similarity score antara setiap pasangan lagu berdasarkan bobot TF-IDF dari kata-kata dalam lirik lagu.
+- Pada tahap ini, menggunakan cosine_similarity dari scikit-learn untuk menghitung similarity score antara setiap pasangan lagu berdasarkan bobot TF-IDF dari kata-kata dalam lirik lagu.
 - Setiap elemen dalam matriks cosine similarity akan menunjukkan seberapa mirip dua lagu berdasarkan liriknya.
 ### Hasil setelah TF-IDF dan hitung Cosine Similarity
-![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/a366759d-a00d-4b38-a4ce-9a476b3035f5)
+
+<div align="center">
+Tabel 4. Hasil setelah TF-IDF dan Cosine Similarity
+
+| No 	|                                    Right Or Wrong 	|                         This Little Light Of Mine 	|                                      Dance, Dance 	|                                        Easy Rider 	|                                         Peak Hour 	|                                           Crazier 	|                                        Temptation 	|                               Kiss Me At Midnight 	|                              Little Black Sandals 	|               I Keep Dreaming Of You All The Time 	| ... 	|                              Just Can't Stay Away 	|                                          Carousel 	|                                            Nicole 	|                             Stop, Look And Listen 	|                      Are You Washed In The Blood? 	|                                   It's Goin' Down 	|                           Nothing Has Been Proved 	|                                         Full Stop 	|                                   Elderberry Wine 	|                       Loneliest Girl In The Crowd 	|
+|:--:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|----:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|--------------------------------------------------:	|
+|  0 	|         (0.6926151152718886, Wrong, Depeche Mode) 	| (0.8912552753241874, This Little Light Of Mine... 	|      (0.575518266675977, Transmission, New Order) 	|    (0.5910962209810225, Easy Rider, Janis Joplin) 	| (0.32206992542535673, Other Hours, Harry Conni... 	|         (0.7754941711502459, Crazier, Gary Numan) 	|         (0.3929678420157294, Give Up, Diana Ross) 	|              (0.5066471621902396, Kiss Me, Annie) 	| (0.24616790905806982, Killer Of Giants, Ozzy O... 	| (0.45593219644788874, Dream The Night Away, Ch... 	| ... 	|            (0.45150868115330983, Stay Away, Toto) 	| (0.5349716820407145, Far Away From Home, Alan ... 	|        (0.7885648165579645, Bitter Creek, Eagles) 	| (0.3948308663184134, Friday's Child, Van Morri... 	| (0.4617949610595998, Washed In The Blood, Indi... 	|             (0.2808057278246893, Do It To Ya, YG) 	| (0.24445918290753302, Gotta Serve Somebody, Bo... 	|  (0.3566836991654504, The Truth About Love, P!nk) 	| (0.21470543444743873, When You Were Mine, John... 	| (0.34757555587642536, Earth Is The Loneliest P... 	|
+|  1 	| (0.4890892450398529, High Sierra, Linda Ronstadt) 	| (0.7417467408562523, Light From Your Lighthous... 	| (0.5276700652016277, I'm Not Gonna Teach Your ... 	|  (0.39963978746206613, C.C. Rider, Elvis Presley) 	| (0.3022579770522006, Midnight Hour, Grateful D... 	| (0.24939899384300776, Forget About It, Alison ... 	| (0.35537008896273625, The Moment You Left Me, ... 	|     (0.46320932080544946, Midnight, King Diamond) 	|               (0.1966807491871396, Intro, J Cole) 	|       (0.42959301156984964, Dream Love, Yoko Ono) 	| ... 	| (0.42222010389632725, Can't Stay Away From You... 	|          (0.4246026490887795, Oh Love, Green Day) 	| (0.7866235258034726, Jesus Is Just Alright, Do... 	| (0.36377883007589196, Don't You Know, Van Morr... 	| (0.40613975933229735, Nothing But The Blood, M... 	| (0.26968652640680785, Where The Haters At?, Yo... 	| (0.24010526650842537, Nothing To Show, Supertr... 	| (0.323007652354002, The Truth Whole Truth, Nut... 	|   (0.18641400459463928, Kiss Me, Robbie Williams) 	| (0.3423052885445563, She's A Girl And I'm A Ma... 	|
+|  2 	| (0.4644304995795569, Wrong All Along, Cheap Tr... 	| (0.6526391050555186, I Shine, You Shine, Fabol... 	| (0.5213951715844843, Dance, Dance, Dance, Neil... 	|           (0.390772036840608, Cool Rider, Grease) 	|       (0.277948550708475, A Million Days, Prince) 	| (0.11161403392489458, Spin, Spin, Spin, Jim Cr... 	| (0.34926952548926626, When There's Nothing Lef... 	| (0.438296006655614, Midnight Blue, Vanessa Wil... 	|   (0.1893457625475976, Black Star, Elvis Presley) 	|        (0.42781989084244487, In My Dreams, Judds) 	| ... 	| (0.3851674407480178, I Can't Breakaway, Natali... 	|    (0.3921203636435262, Spread Your Wings, Queen) 	| (0.7690109501732609, The Coffee Song, Deep Pur... 	|  (0.35164503229246313, Wave Ya Hand, Nicki Minaj) 	| (0.40099033458636374, There Is Power In The Bl... 	|         (0.2676698438198438, Do Ya Bad, Yung Joc) 	|   (0.23973047153444124, Forever Young, Meat Loaf) 	|     (0.2660166141692746, Over The Top, Scorpions) 	| (0.16578228813658913, Fall In Love With Me, Ig... 	| (0.3283725748681672, She's Got The Answer, Air... 	|
+|  3 	| (0.3931530633091998, Where Did We Go Wrong, Le... 	| (0.5676400294430649, Wait For The Light To Shi... 	| (0.5132903464956025, Can't Stop The Feeling!, ... 	| (0.3860253050509746, It's So Easy, Linda Ronst... 	| (0.24885164528806747, Closer By The Hour, Doll... 	| (0.10360037230577858, Lift Me Up, Olivia Newto... 	| (0.34292864704903886, Don't Give Up, Peter Gab... 	| (0.40809367294610566, At Midnight (My Love Wil... 	| (0.18720432359472655, What Are You Waiting For... 	| (0.41395119740282754, Dream Of Me, Backstreet ... 	| ... 	|         (0.38330781140667486, Stay Away, Nirvana) 	|         (0.3847385939036815, Far Away, Scorpions) 	| (0.7625685521400855, Wear Out The Turnpike, Ji... 	|     (0.3479988015688459, Highway, Paul McCartney) 	| (0.38644711109028707, But The Blood, Kirk Fran... 	|  (0.23857703811734293, Picture Perfect, Yung Joc) 	|        (0.23962227080906598, Nothing, The Script) 	| (0.24545245108295807, You've Got Everything No... 	|   (0.16198786737532708, Weeping Wine, Lloyd Cole) 	| (0.31958439845715236, Girl Like Mine, Roy Orbi... 	|
+|  4 	| (0.3811841755186165, I've Been Wrong Before, E... 	| (0.5632025697620738, Let Your Soul Shine, Bosson) 	| (0.47088664463112534, Tomorrow's Dance, Depech... 	| (0.3794225611861334, I Know You Rider, Janis J... 	| (0.23207436206004084, Darkest Hour Is Just Bef... 	| (0.09985230544428646, Oh, Atlanta, Alison Krauss) 	|                (0.34154573652691617, More, Yello) 	| (0.37999508961788003, Round Midnight, Chaka Khan) 	|    (0.18667805068894153, A Little You, Tom Jones) 	| (0.4120676663062088, All I Have To Do Is Dream... 	| ... 	|     (0.3761478846071725, Stay With Me, Sam Smith) 	| (0.37399871873173957, You Keep On Moving, Deep... 	| (0.7235498016314131, Spin The Bottle, Lenny Kr... 	|             (0.3453497356856517, Choose, Santana) 	|   (0.37141282427654876, Blood On Blood, Bon Jovi) 	| (0.23828502768780951, Them Braves, Ying Yang T... 	|  (0.22529761276694496, Forever Young, Mary Black) 	|       (0.22999656832751958, Baby Don't Cry, INXS) 	| (0.15970134407093858, Blackberry Wine, Gordon ... 	|   (0.29580554098560463, She's Tight, Cheap Trick) 	|
+
+</div>
 
 ### Result
 Sebagai contoh, akan diinputkan judul lagu berikut:
 <div align="center">
 
-Tabel 4. Data Input
+Tabel 5. Data Input
     
 | Artist        	| Judul             	|
 |---------------	|-------------------	|
@@ -175,7 +187,7 @@ Dan keluar 5 rekomendasi teratas berdasarkan similarity score paling tinggi <br>
 
 <div align="center">
     
-Tabel 5. Data Output
+Tabel 6. Data Output
 
 | Artist             	| Judul                           	|
 |--------------------	|---------------------------------	|
@@ -213,8 +225,8 @@ Dengan demikian, tujuan dari pengembangan sistem rekomendasi musik menggunakan c
 
     - Preprocessing Data: Tahapan ini melibatkan menghapus karakter khusus, mengubah teks menjadi lowercase, dan melakukan proses stemming pada lirik lagu untuk menghasilkan kata-kata dasar.
     - Menggunakan TF-IDF: Teknik ini digunakan untuk menghitung bobot kata-kata dalam lirik lagu, di mana kata-kata yang jarang muncul tetapi muncul dalam beberapa lirik lagu dapat dianggap penting.
-    - Menggunakan Cosine Similarity: Kami menggunakan cosine similarity untuk mengukur sejauh mana kemiripan antara lirik lagu yang satu dengan yang lainnya. Semakin tinggi nilai cosine similarity, semakin mirip kedua lirik lagu tersebut.
-    - Rekomendasi Lagu: Berdasarkan nilai cosine similarity, kami dapat merekomendasikan lagu-lagu yang memiliki kemiripan lirik dengan lagu yang disukai oleh pengguna.
+    - Menggunakan Cosine Similarity: Untuk mengukur sejauh mana kemiripan antara lirik lagu yang satu dengan yang lainnya. Semakin tinggi nilai cosine similarity, semakin mirip kedua lirik lagu tersebut.
+    - Rekomendasi Lagu: Berdasarkan nilai cosine similarity, model dapat merekomendasikan lagu-lagu yang memiliki kemiripan lirik dengan lagu yang disukai oleh pengguna.
 
 ### Referensi
 1. Ula, N., Setianingsih, C., & Nugrahaeni, R. A. (2021). Sistem Rekomendasi Lagu dengan Metode Content-based Filtering Berbasis Website. E-Proceeding of Engineering, 8(6), 12193–12199.
