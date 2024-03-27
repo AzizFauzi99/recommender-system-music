@@ -3,18 +3,23 @@
 
 ## 1. Project Overview
 ### Latar Belakang
-Musik adalah bagian penting dalam kehidupan sehari-hari banyak orang. Dengan adanya berbagai layanan streaming musik, pengguna memiliki akses ke jutaan lagu dari berbagai genre. Namun, seringkali pengguna kesulitan dalam menemukan lagu-lagu baru yang sesuai dengan selera mereka. Proyek ini bertujuan untuk memberikan solusi dengan memanfaatkan teks lirik lagu untuk merekomendasikan lagu-lagu yang mirip secara konten.
+Musik adalah bagian penting dalam kehidupan sehari-hari banyak orang. Dengan adanya berbagai layanan streaming musik, pengguna memiliki akses ke jutaan lagu dari berbagai genre. Namun, seringkali pengguna kesulitan dalam menemukan lagu-lagu baru yang sesuai dengan selera mereka [1]. Proyek ini bertujuan untuk memberikan solusi dengan memanfaatkan teks lirik lagu untuk merekomendasikan lagu-lagu yang mirip secara konten.
 ### Urgensi Permasalahan
 Proyek ini penting karena dapat membantu pengguna menemukan lagu-lagu baru yang sesuai dengan selera mereka berdasarkan lirik lagu yang mereka sukai. Dengan demikian, proyek ini dapat meningkatkan pengalaman mendengarkan musik pengguna dan membantu mereka menemukan musik yang lebih bermakna bagi mereka.
-### Referensi Riset
-[Sistem Rekomendasi lagu dengan metode Content-Based Filtering berbasis Website](https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/17229/16940) 
-[How to Build a Content-Based Song Recommender](https://georgepaskalev.medium.com/how-to-build-a-content-based-song-recommender-4346edbfa5cf)
 
 ## 2. Business Understanding
 ### Problem Statement
-Pengguna layanan streaming musik sering kesulitan menemukan lagu-lagu baru yang sesuai dengan selera mereka berdasarkan lirik lagu yang mereka sukai.
+    1. Bagaimana mengembangkan sistem rekomendasi musik yang dapat memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna?
+    2. Bagaimana tingkat akurasi dan relevansi rekomendasi lagu yang diberikan kepada pengguna?
+    3. Bagaimana tahapan dalam membuat rekomendasi musik berdasarkan lirik lagu?
 ### Goals
-Membangun sistem rekomendasi musik berdasarkan lirik lagu yang dapat merekomendasikan lagu-lagu lain yang sesuai dengan selera pengguna.
+    1. Mengembangkan sistem rekomendasi musik yang dapat memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna
+    2. Mengetahui tingkat akurasi dan relevansi rekomendasi lagu yang diberikan kepada pengguna
+    3. Mengethaui tahapan dalam membuat rekomendasi musik berdasarkan lirik lagu
+### Manfaat/Impact
+    1. Meningkatkan Penjualan atau Stream Musik: Dengan memperkenalkan lagu-lagu baru/lain kepada pengguna berdasarkan lirik, sistem ini dapat membantu meningkatkan penjualan atau stream musik bagi para artis atau label musik.
+    2. Meningkatkan Retensi Pengguna: Dengan memberikan pengalaman yang memuaskan dalam menemukan lagu-lagu yang disukai, sistem ini dapat membantu meningkatkan retensi pengguna terhadap platform musik tersebut.
+    3. Meningkatkan Pengalaman Pengguna: Dengan memberikan rekomendasi lagu yang sesuai dengan preferensi musik pengguna, sistem ini dapat meningkatkan pengalaman mendengarkan musik pengguna.
 ### Solutions Approach
 1. Preprocessing
     - Case Folding: Merubah semua teks lirik lagu menjadi huruf kecil untuk menghindari perbedaan yang tidak diperlukan karena perbedaan besar-kecil huruf.
@@ -23,6 +28,8 @@ Membangun sistem rekomendasi musik berdasarkan lirik lagu yang dapat merekomenda
 2. Modeling
     - TF-IDF (Term Frequency-Inverse Document Frequency): Menggunakan TF-IDF untuk menghitung bobot kata-kata dalam lirik lagu. TF-IDF memberikan bobot yang lebih tinggi untuk kata-kata yang jarang muncul namun penting dalam dokumen tertentu.
     - Cosine Similarity: Menggunakan cosine similarity untuk mengukur kemiripan antara lirik lagu yang disukai pengguna dengan lirik lagu lainnya. Cosine similarity menghitung kesamaan arah antara dua vektor, di mana vektor mewakili bobot kata-kata dalam lirik lagu.
+3. Evaluasi
+    - Mengukur tingkat relevansi dengan menggunakan metrik precision
 
 ## 3. Data Understanding
 ### Informasi Umum tentang Data
@@ -38,25 +45,78 @@ Dataset ini terbatas pada lagu-lagu berbahasa Inggris, sehingga cocok untuk digu
 
 ### Exploratory Data Analysis
 1. Info Data dan Cek Missing Value <br>
-![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/fb76a022-38ff-4551-883c-5800babbc741) <br>
+
+<div align="center">
+Tabel 1. Info Data
+
+| # 	| Column 	| Non-Null Count 	| Dtype  	|
+|---	|--------	|----------------	|--------	|
+| 0 	| artist 	| 57650 non-null 	| object 	|
+| 1 	| song   	| 57650 non-null 	| object 	|
+| 2 	| link   	| 57650 non-null 	| object 	|
+| 3 	| text   	| 57650 non-null 	| object 	|
+
+</div>
+
     - Semua kolom bertipe object dan tidak missing value dalam dataset ini
+    
 2. Berapa banyak artist yang ada dalam dataset? <br>
-![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/be2210e6-55da-4118-837a-762b78b591b3) <br>
-    - Terdapat 17566 artist yang terdapat dalam dataset ini
+<div align="center">
+
+![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/293f0118-2d71-44d8-a93d-8661354296e6) <br>
+
+</div>
 3. Visualisasi artis dengan lagu terbanyak (top 10) di dataset ini <br>
-![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/8fc0943f-e366-4bfc-a907-d82d2c531279) <br>
+
+<div align="center">
+
+Tabel 2. Artist dengan lagu terbanyak di dataset
+
+| Artist           	| Total Lagu 	|
+|------------------	|------------	|
+| Donna Summer     	| 191        	|
+| Gordon Lightfoot 	| 189        	|
+| Bob Dylan        	| 188        	|
+| George Strait    	| 188        	|
+| Loretta Lynn     	| 187        	|
+| Cher             	| 187        	|
+| Alabama          	| 187        	|
+| Reba Mcentire    	| 187        	|
+| Chaka Khan       	| 186        	|
+| Dean Martin      	| 186        	|
+
+
 ![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/701e456e-0ccf-484a-802a-6d47035a8a6c) <br>
 
+</div>
+
 4. Rata-rata jumlah kata dalam lirik <br>
-![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/4f98ba36-0b2e-4f92-99ac-f4e95032323b)<br>
+
+<div align="center">
+
+Tabel 3. Describe Data
+    
+| Metrik 	| Hasil        	|
+|--------	|--------------	|
+| count  	| 57650.000000 	|
+| mean   	| 219.486262   	|
+| std    	| 108.814619   	|
+| min    	| 37.000000    	|
+| 25%    	| 145.000000   	|
+| 50%    	| 196.000000   	|
+| 75%    	| 264.000000   	|
+| max    	| 827.000000   	|
+
+</div>
+
     - Diketahui, Rata-rata dalam 1 lagu terdapat 219 kata
 
 ## 4. Data Preparation
 ### Teknik yang Dilakukan
 1. Menghapus "\n" dalam Kolom Text (Lirik): Langkah ini dilakukan untuk menghilangkan karakter newline yang tidak diperlukan dalam teks lirik lagu.
-2. Case Folding: Merubah semua teks lirik lagu menjadi huruf kecil untuk menghindari perbedaan yang tidak diperlukan karena perbedaan besar-kecil huruf.
-3. Stemming (Bahasa Inggris) dengan PorterStemmer: Menggunakan algoritma PorterStemmer untuk mengubah kata-kata dalam lirik lagu menjadi bentuk dasarnya. Misalnya, "running" akan menjadi "run".
-4. Menghapus Stopwords: Menghapus kata-kata yang umum dan tidak memberikan informasi tambahan (stopwords) dalam bahasa Inggris.
+2. Case Folding: Merubah semua teks lirik lagu menjadi huruf kecil untuk menghindari perbedaan yang tidak diperlukan karena perbedaan besar-kecil huruf [1].
+3. Stemming (Bahasa Inggris) dengan PorterStemmer: Menggunakan algoritma PorterStemmer untuk mengubah kata-kata dalam lirik lagu menjadi bentuk dasarnya. Misalnya, "running" akan menjadi "run" [1].
+4. Menghapus Stopwords: Menghapus kata-kata yang umum dan tidak memberikan informasi tambahan (stopwords) dalam bahasa Inggris [1].
 ### Proses Data Preparation
 1. Langkah pertama adalah menghapus karakter "\n" dari kolom teks lirik lagu.
 2. Selanjutnya, dilakukan case folding untuk mengubah semua huruf menjadi huruf kecil.
@@ -100,23 +160,62 @@ Dalam konteks rekomendasi musik berdasarkan lirik lagu, content-based filtering 
 ![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/a366759d-a00d-4b38-a4ce-9a476b3035f5)
 
 ### Result
-Sebagai contoh, di sini saya input lagu dari Justin Bieber dengan judul "Christmas Is Dead" dan keluar 5 rekomendasi teratas berdasarkan similarity score paling tinggi <br>
-![image](https://github.com/AzizFauzi99/recommender-system-music/assets/92005833/08d9b73f-2ef2-48ed-a8b3-830a75407deb)<br>
-Jika kita lihat, model berhasil menghasilkan rekomendasi yang sesuai, yakni yang berkaitan dengan christmas
+Sebagai contoh, akan diinputkan judul lagu berikut:
+<div align="center">
+
+Tabel 4. Data Input
+    
+| Artist        	| Judul             	|
+|---------------	|-------------------	|
+| Justin Bieber 	| Christmas is Dead 	|
+
+</div>
+
+Dan keluar 5 rekomendasi teratas berdasarkan similarity score paling tinggi <br>
+
+<div align="center">
+    
+Tabel 5. Data Output
+
+| Artist             	| Judul                           	|
+|--------------------	|---------------------------------	|
+| Harry Connick, Jr. 	| Please Come Home for Christmas  	|
+| Cyndi Lauper       	| Three Ships                     	|
+| Glee               	| Do They Know It's Christmas     	|
+| Christmas Songs    	| I Believe in Christmas          	|
+| Demi Lovato        	| All I Want for Christmas Is You 	|
+
+</div> 
+
+Jika dilihat pada tabel hasil, model berhasil menghasilkan rekomendasi yang sesuai, yakni yang berkaitan dengan christmas
 
 ## 6. Evaluation
 Untuk evaluasi, menggunakan metrik precision yang dirumuskan sebagai berikut: <br>
-<b> Precision = (Jumlah Rekomendasi Relevan) / (Jumlah Item yang Direkomendasikan) </b>
+
+$$ x = \frac{\text{Jumlah Rekomendasi Relevan}}{\text{Jumlah Item yang Direkomendasikan}} $$
 
 Keterangan:
-- Jumlah rekomendasi yang relevan: Jumlah item yang direkomendasikan oleh sistem yang benar-benar disukai atau dibutuhkan oleh pengguna.
+- Jumlah rekomendasi relevan: Jumlah item yang direkomendasikan oleh sistem yang benar-benar disukai atau dibutuhkan oleh pengguna.
 - Jumlah item yang direkomendasikan: Jumlah total item yang direkomendasikan oleh sistem kepada pengguna.
 
 Berdasarkan hasil rekomendasi Musik "Christmas Is Dead" dari Justin Bieber di atas, dapat dihitung nilai precision (P) sebagai berikut:
 
-P = 5/5 = 1
+$$ P = \frac{5}{5} = 1 $$
 
 Ini berarti bahwa dari 5 item yang direkomendasikan, semua di antaranya relevan, sehingga presisi adalah 100%.
 
 Dengan demikian, tujuan dari pengembangan sistem rekomendasi musik menggunakan content-based filtering telah berhasil tercapai dengan baik.
 
+## Sumarry
+1. Dalam proyek ini, berhasil dikembangkan sistem rekomendasi musik yang menggunakan metode content-based filtering berdasarkan lirik lagu. Sistem ini memanfaatkan teknik TF-IDF untuk menganalisis dan memahami makna dari lirik lagu. Dengan demikian, model dapat merekomendasikan lagu-lagu yang memiliki kesamaan dalam konten liriknya dengan lagu yang disukai oleh pengguna.
+2. Dalam mengukur tingkat akurasi dan relevansi rekomendasi lagu yang diberikan kepada pengguna, digunakan metrik precision (P). Precision mengukur proporsi dari item yang direkomendasikan yang relevan bagi pengguna. Dalam contoh kasus "Christmas Is Dead" dari Justin Bieber, nilai precision yang dihitung adalah 100%, yang berarti semua lagu yang direkomendasikan relevan bagi pengguna.
+3. Tahapan dalam membuat rekomendasi musik berdasarkan lirik lagu meliputi:
+
+    - Preprocessing Data: Tahapan ini melibatkan menghapus karakter khusus, mengubah teks menjadi lowercase, dan melakukan proses stemming pada lirik lagu untuk menghasilkan kata-kata dasar.
+    - Menggunakan TF-IDF: Teknik ini digunakan untuk menghitung bobot kata-kata dalam lirik lagu, di mana kata-kata yang jarang muncul tetapi muncul dalam beberapa lirik lagu dapat dianggap penting.
+    - Menggunakan Cosine Similarity: Kami menggunakan cosine similarity untuk mengukur sejauh mana kemiripan antara lirik lagu yang satu dengan yang lainnya. Semakin tinggi nilai cosine similarity, semakin mirip kedua lirik lagu tersebut.
+    - Rekomendasi Lagu: Berdasarkan nilai cosine similarity, kami dapat merekomendasikan lagu-lagu yang memiliki kemiripan lirik dengan lagu yang disukai oleh pengguna.
+
+### Referensi
+1. Ula, N., Setianingsih, C., & Nugrahaeni, R. A. (2021). Sistem Rekomendasi Lagu dengan Metode Content-based Filtering Berbasis Website. E-Proceeding of Engineering, 8(6), 12193–12199.
+2. Paskalev, G. (2021, February 4). How to build a content-based song recommender. Medium. https://georgepaskalev.medium.com/how-to-build-a-content-based-song-recommender-4346edbfa5cf 
